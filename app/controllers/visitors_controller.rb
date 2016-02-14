@@ -11,6 +11,12 @@ class VisitorsController < ApplicationController
   
   def venue
     @venue = params[:id]
+    @count = @parse.query("Rate").tap do |q|
+      q.eq("foursquareVenueId", @venue)
+      q.eq("takenReceipt", false)
+      q.limit = 0
+      q.count
+    end.get
   end
   
   private
