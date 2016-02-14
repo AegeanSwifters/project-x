@@ -9,6 +9,10 @@ class VisitorsController < ApplicationController
     end.get
   end
   
+  def venue
+    @venue = params[:id]
+  end
+  
   private
   
     def init_parse

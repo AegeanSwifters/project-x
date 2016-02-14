@@ -3,10 +3,10 @@
     <div class="col-md-12">
       <div class="list-group">
         <% @venues.each do |v| %>
-          <a href="#" class="list-group-item">
+          <%= link_to venue_path(:id => v["foursquareVenueId"]), :class => "list-group-item" do %>
             <h4 class="list-group-item-heading"><%= v["foursquareVenueId"] %></h4>
             <p class="list-group-item-text">Last report <%= time_ago_in_words(v["updatedAt"]) %> ago.</p>
-          </a>
+          <% end %>
         <% end %>
       </div>
     </div>
