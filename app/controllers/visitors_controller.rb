@@ -4,8 +4,9 @@ class VisitorsController < ApplicationController
   before_filter :init_parse
   
   def index
-    venues_query = @parse.query("Rate")
-    @venues = venues_query.get
+    @venues = @parse.query("Venue").tap do |q|
+      q.order_by = "-updatedAt"
+    end.get
   end
   
   private

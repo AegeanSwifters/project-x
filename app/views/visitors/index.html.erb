@@ -1,14 +1,8 @@
 <div class="list-group">
-  <% @venues.take(5).each do |v| %>
-    <% count = @parse.query("Rate").tap do |q| %>
-      <% q.eq("foursquareVenueId", v["foursquareVenueId"]) %>
-      <% q.eq("takenReceipt", false) %>
-      <% q.limit = 0 %>
-      <% q.count %>
-    <% end.get %>
+  <% @venues.each do |v| %>
     <a href="#" class="list-group-item">
       <h4 class="list-group-item-heading"><%= v["foursquareVenueId"] %></h4>
-      <p class="list-group-item-text"><%= count["count"] %></p>
+      <p class="list-group-item-text">Last report <%= time_ago_in_words(v["updatedAt"]) %> ago.</p>
     </a>
   <% end %>
 </div>
